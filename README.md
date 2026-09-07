@@ -225,16 +225,6 @@ Update deployment names in `appsettings.json`:
 }
 ```
 
-## 🚧 Next Steps
-
-- [ ] Add JWT authentication
-- [ ] Implement Angular frontend
-- [ ] Add document management (list, delete)
-- [ ] Support more file formats (Word, TXT, etc.)
-- [ ] Add streaming responses
-- [ ] Implement rate limiting
-- [ ] Add caching for embeddings
-- [ ] Add conversation persistence (database)
 
 ## 📝 Notes
 
