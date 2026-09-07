@@ -1,0 +1,22 @@
+<div class="citation-panel">
+  <div class="panel-header" (click)="togglePanel()">
+    <h3>Citations ({{citations.length}})</h3>
+    <span class="toggle-icon" [class.expanded]="isExpanded()">▼</span>
+  </div>
+  
+  <div class="panel-content" [class.expanded]="isExpanded()">
+    <div *ngFor="let citation of citations" class="citation-item">
+      <div class="citation-header">
+        <strong>{{citation.fileName}}</strong>
+        <span class="score">Score: {{citation.score | number:'1.3-3'}}</span>
+      </div>
+      <div class="citation-content">
+        <p>{{citation.content}}</p>
+      </div>
+    </div>
+    
+    <div *ngIf="citations.length === 0" class="no-citations">
+      <p>No citations available</p>
+    </div>
+  </div>
+</div>

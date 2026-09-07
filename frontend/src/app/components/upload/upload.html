@@ -1,0 +1,41 @@
+<div class="upload-container">
+  <div class="upload-header">
+    <h2>📤 Upload Documents</h2>
+    <p>Upload your documents to start chatting with AI</p>
+  </div>
+  
+  <div class="upload-card">
+    <div class="upload-area" (dragover)="onDragOver($event)" (drop)="onDrop($event)">
+      <input type="file" #fileInput (change)="onFileSelect($event)" accept=".pdf,.docx,.doc,.xlsx,.xls,.txt,.csv" style="display: none">
+      <div (click)="fileInput.click()" class="upload-zone">
+        <div class="upload-icon">📁</div>
+        <h3>Drop files here or click to browse</h3>
+        <p>Supported formats: PDF, DOCX, XLSX, TXT, CSV</p>
+        <div class="supported-formats">
+          <span class="format-tag">📄 PDF</span>
+          <span class="format-tag">📝 DOCX</span>
+          <span class="format-tag">📈 XLSX</span>
+          <span class="format-tag">📃 TXT</span>
+          <span class="format-tag">📋 CSV</span>
+        </div>
+      </div>
+    </div>
+  
+  <div *ngIf="selectedFile()" class="file-preview">
+    <app-file-verification 
+      [file]="selectedFile()!" 
+      (uploadComplete)="onUploadComplete($event)"
+      (uploadError)="onUploadError($event)">
+    </app-file-verification>
+    <div class="file-actions">
+      <button (click)="clearFile()" class="clear-btn">
+        ❌ Clear
+      </button>
+    </div>
+  </div>
+  
+    <div *ngIf="uploadStatus()" class="status-message" [ngClass]="uploadStatus()?.type">
+      {{uploadStatus()?.message}}
+    </div>
+  </div>
+</div>

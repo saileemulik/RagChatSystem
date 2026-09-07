@@ -1,0 +1,51 @@
+<div class="document-list">
+  <div class="documents-header">
+    <div class="header-content">
+      <h2>📁 Document Library</h2>
+      <p>Manage your uploaded documents</p>
+    </div>
+    <button (click)="loadDocuments()" class="refresh-btn" [disabled]="isLoading()">
+      🔄 Refresh
+    </button>
+  </div>
+  
+  <div class="documents-card">
+
+  <div *ngIf="isLoading()" class="loading">Loading documents...</div>
+
+  <div *ngIf="!isLoading() && documents().length === 0" class="empty-state">
+    No documents uploaded yet. Upload a document to get started!
+  </div>
+
+  <div *ngIf="!isLoading() && documents().length > 0" class="documents">
+    <div *ngFor="let doc of documents()" class="document-item" [class.expanded]="expandedDoc() === doc.documentId">
+      <div class="doc-header" (click)="toggleDocument(doc)">
+        <div class="doc-info">
+          <div class="doc-name">
+            <span class="expand-icon">{{expandedDoc() === doc.documentId ? '▼' : '▶'}}</span>
+            {{doc.fileName}}
+          </div>
+          <div class="doc-details">
+            <span class="upload-date">{{doc.uploadedAt | date:'short'}}</span>
+          </div>
+        </div>
+        <button 
+          (click)="deleteDocument(doc.documentId); $event.stopPropagation()" 
+          class="delete-btn"
+          title="Delete document">
+          🗑️
+        </button>
+      </div>
+      
+      <div *ngIf="expandedDoc() === doc.documentId" class="doc-content">
+        <div *ngIf="loadingContent() === doc.documentId" class="loading-content">
+          Loading document content...
+        </div>
+        <div *ngIf="doc.content" class="content-text">
+          {{doc.content}}
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>

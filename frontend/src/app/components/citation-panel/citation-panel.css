@@ -1,0 +1,66 @@
+.citation-panel {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  margin-top: 1rem;
+}
+
+.panel-header {
+  padding: 1rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+}
+
+.panel-header h3 {
+  margin: 0;
+}
+
+.toggle-icon {
+  transition: transform 0.3s;
+}
+
+.toggle-icon.expanded {
+  transform: rotate(180deg);
+}
+
+.panel-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s;
+}
+
+.panel-content.expanded {
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+.citation-item {
+  padding: 1rem;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.citation-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.score {
+  color: #666;
+  font-size: 0.9em;
+}
+
+.citation-content p {
+  margin: 0;
+  line-height: 1.5;
+  color: #555;
+}
+
+.no-citations {
+  padding: 1rem;
+  text-align: center;
+  color: #666;
+}

@@ -1,0 +1,23 @@
+<div class="file-verification" [class.valid]="isValid" [class.invalid]="!isValid" [class.uploading]="isUploading">
+  <div class="file-info">
+    <div class="file-icon">{{fileIcon}}</div>
+    <div class="file-details">
+      <div class="file-name">{{file.name}}</div>
+      <div class="file-size">{{fileSizeFormatted}}</div>
+    </div>
+  </div>
+  
+  <div class="validation-status">
+    <div class="status-icon">
+      <span *ngIf="isUploading">⏳</span>
+      <span *ngIf="!isUploading && uploadResult" class="success">✅</span>
+      <span *ngIf="!isUploading && !uploadResult && isValid" class="success">✅</span>
+      <span *ngIf="!isValid" class="error">❌</span>
+    </div>
+    <div class="status-message" [class.success]="isValid" [class.error]="!isValid">
+      <span *ngIf="isUploading">Uploading...</span>
+      <span *ngIf="uploadResult">Uploaded successfully! {{uploadResult.chunksCreated}} chunks created.</span>
+      <span *ngIf="!isUploading && !uploadResult">{{validationMessage}}</span>
+    </div>
+  </div>
+</div>

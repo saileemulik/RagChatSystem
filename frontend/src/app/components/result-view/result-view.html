@@ -1,0 +1,70 @@
+<div class="result-container">
+  <div *ngIf="isLoading" class="loading">
+    <div class="spinner"></div>
+    <p>Processing your question...</p>
+  </div>
+  
+  <div *ngIf="responses.length === 0 && !isLoading" class="empty-state">
+    <p>Ask a question about your uploaded documents to get started!</p>
+  </div>
+  
+  <div *ngFor="let response of responses" class="response-item">
+    <div class="answer">
+      <h4>Answer:</h4>
+      
+      <ng-container [ngSwitch]="formatAnswer(response.answer).type">
+        
+        <!-- Comparison Table -->
+        <div *ngSwitchCase="'comparison'" class="comparison-format">
+          <div class="format-label">📊 Comparison Analysis</div>
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th *ngFor="let header of formatAnswer(response.answer).content.headers">
+                  {{header}}
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let row of formatAnswer(response.answer).content.rows">
+                <td *ngFor="let cell of row">{{cell}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        
+        <!-- Step-by-Step List -->
+        <div *ngSwitchCase="'steps'" class="steps-format">
+          <div class="format-label">📋 Step-by-Step Guide</div>
+          <ol class="steps-list">
+            <li *ngFor="let step of formatAnswer(response.answer).content" class="step-item">
+              {{step}}
+            </li>
+          </ol>
+        </div>
+        
+        <!-- Calculation Display -->
+        <div *ngSwitchCase="'calculation'" class="calculation-format">
+          <div class="format-label">🧮 Calculation Result</div>
+          <div class="calc-result">
+            <strong>{{formatAnswer(response.answer).content.calculation}}</strong>
+          </div>
+          <div class="calc-explanation">{{formatAnswer(response.answer).content.explanation}}</div>
+        </div>
+        
+        <!-- Default Paragraph -->
+        <div *ngSwitchDefault class="paragraph-format">
+          <div class="format-label">📄 Information</div>
+          <div *ngFor="let paragraph of formatAnswer(response.answer).content" class="paragraph">
+            {{paragraph}}
+          </div>
+        </div>
+        
+      </ng-container>
+    </div>
+    
+    <div class="metadata">
+      <small>Tokens used: {{response.tokensUsed}} | Citations: {{response.citations.length}}</small>
+    </div>
+  </div>
+</div>

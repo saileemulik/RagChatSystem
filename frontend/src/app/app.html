@@ -1,0 +1,53 @@
+<div class="app">
+  <nav class="nav">
+    <h1>RAG Chat System</h1>
+  </nav>
+
+  <main class="content">
+    <div *ngIf="currentView() === 'home'" class="home-section">
+      <div class="hero">
+        <h1>RAG Chat System</h1>
+        <p>Upload documents and chat with your AI assistant</p>
+      </div>
+      
+      <div class="feature-cards">
+        <div class="card" (click)="goToUpload()">
+          <div class="card-icon">📤</div>
+          <h3>Upload Documents</h3>
+          <p>Upload PDF, Word, Excel, and text files to get started</p>
+        </div>
+        
+        <div class="card" (click)="goToChat()">
+          <div class="card-icon">💬</div>
+          <h3>Chat Assistant</h3>
+          <p>Ask questions about your uploaded documents</p>
+        </div>
+        
+        <div class="card" (click)="goToDocuments()">
+          <div class="card-icon">📁</div>
+          <h3>Manage Documents</h3>
+          <p>View, delete, and organize your document library</p>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="currentView() === 'chat'" class="chat-section">
+      <div class="chat-layout">
+        <app-chat-sidebar (backClicked)="goHome()"></app-chat-sidebar>
+        <div class="chat-main">
+          <app-chat></app-chat>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="currentView() === 'upload'" class="upload-section">
+      <button (click)="goHome()" class="back-btn">← Back</button>
+      <app-upload #upload (fileUploaded)="onFileUploaded($event)"></app-upload>
+    </div>
+
+    <div *ngIf="currentView() === 'documents'" class="documents-section">
+      <button (click)="goHome()" class="back-btn">← Back</button>
+      <app-document-list></app-document-list>
+    </div>
+  </main>
+</div>

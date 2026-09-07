@@ -1,0 +1,37 @@
+<div class="sidebar">
+  <div class="sidebar-header">
+    <button (click)="goHome()" class="back-btn">
+      ← Back
+    </button>
+    <button (click)="newChat()" class="new-chat-btn">
+      ➕ New Chat
+    </button>
+  </div>
+
+  <div class="conversations">
+    <div 
+      *ngFor="let conv of chatHistoryService.conversations()" 
+      class="conversation-item"
+      [class.active]="chatHistoryService.activeConversationId() === conv.id"
+      (click)="selectConversation(conv.id)">
+      
+      <div class="conversation-content">
+        <div class="conversation-title">{{conv.title}}</div>
+        <div class="conversation-date">{{conv.lastUpdated | date:'MMM d'}}</div>
+      </div>
+      
+      <button 
+        (click)="deleteConversation(conv.id, $event)" 
+        class="delete-conversation-btn"
+        title="Delete conversation">
+        ❌
+      </button>
+    </div>
+  </div>
+
+  <div class="sidebar-footer">
+    <button (click)="clearAll()" class="clear-all-btn">
+      🗑️ Clear All
+    </button>
+  </div>
+</div>

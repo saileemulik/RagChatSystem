@@ -1,0 +1,17 @@
+<div class="query-box">
+  <form (ngSubmit)="onSubmit()" class="query-form">
+    <input 
+      type="text" 
+      [(ngModel)]="question" 
+      name="question"
+      placeholder="Ask a question about your documents..."
+      [disabled]="isLoading()"
+      class="question-input">
+    <button 
+      type="submit" 
+      [disabled]="!question.trim() || isLoading()"
+      class="submit-btn">
+      {{isLoading() ? 'Processing...' : 'Ask'}}
+    </button>
+  </form>
+</div>

@@ -1,0 +1,99 @@
+<div class="chat-container">
+  <div class="chat-header">
+    <h3>💬 Chat</h3>
+    <div class="header-controls">
+      <!-- Agentic AI Toggle -->
+      <div class="agentic-toggle">
+        <label class="toggle-label">
+          <input 
+            type="checkbox" 
+            [checked]="useAgenticAI()" 
+            (change)="toggleAgenticAI()"
+            class="toggle-checkbox">
+          <span class="toggle-slider"></span>
+          <span class="toggle-text">{{useAgenticAI() ? '🧠 Agentic AI' : '📄 Document Only'}}</span>
+        </label>
+      </div>
+      <button (click)="newChat()" class="new-chat-btn">
+        ➕ New Chat
+      </button>
+    </div>
+  </div>
+  
+  <div class="chat-messages">
+    <div class="welcome-message" *ngIf="responses().length === 0">
+      <div class="bot-message">
+        <div class="avatar">🤖</div>
+        <div class="message-content">
+          <p>Hello! I'm your document assistant. Ask me anything about your uploaded documents.</p>
+        </div>
+      </div>
+    </div>
+    
+    <div *ngFor="let response of responses()" class="conversation">
+      <div class="user-message">
+        <div class="message-content">
+          <p>{{getLastQuestion(response)}}</p>
+        </div>
+        <div class="avatar">👤</div>
+      </div>
+      
+      <div class="bot-message">
+        <div class="avatar">🤖</div>
+        <div class="message-content">
+          <p [innerHTML]="response.answer"></p>
+          
+          <!-- Show tools used for agentic responses -->
+          <div *ngIf="isAgenticResponse(response) && response.toolsUsed.length > 0" class="tools-used">
+            <small><strong>🔧 Tools Used:</strong></small>
+            <div class="tool-list">
+              <span *ngFor="let tool of response.toolsUsed" class="tool-badge">
+                {{tool.toolName}}
+              </span>
+            </div>
+          </div>
+          
+          <div *ngIf="response.citations.length > 0" class="citations">
+            <small>Source: {{response.citations[0].fileName}}</small>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div *ngIf="isLoading()" class="bot-message typing">
+      <div class="avatar">🤖</div>
+      <div class="message-content">
+        <div class="typing-indicator">
+          <span></span><span></span><span></span>
+        </div>
+        <div class="loading-text">{{loadingMessage()}}</div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="chat-input">
+    <div class="input-info">
+      <small *ngIf="useAgenticAI()" class="mode-indicator agentic">
+        🧠 Agentic AI Mode: Can search documents + web + calculate
+      </small>
+      <small *ngIf="!useAgenticAI()" class="mode-indicator document">
+        📄 Document Mode: Searches uploaded documents only
+      </small>
+    </div>
+    <form (ngSubmit)="onSubmit()" class="input-form">
+      <input 
+        type="text" 
+        [(ngModel)]="question" 
+        name="question"
+        [placeholder]="useAgenticAI() ? 'Ask me anything - I can search docs, web, and calculate!' : 'Ask me about your documents...'"
+        [disabled]="isLoading()"
+        class="message-input">
+      <button 
+        type="submit" 
+        [disabled]="!question.trim() || isLoading()"
+        class="send-btn">
+        📤
+      </button>
+    </form>
+  </div>
+</div>

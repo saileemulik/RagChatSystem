@@ -1,0 +1,117 @@
+{
+  "info": {
+    "name": "RAG Chat System API",
+    "description": "AI-Powered PDF Q&A using Semantic Kernel, Azure OpenAI, and Azure Cognitive Search",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Ingest PDF Document",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "file",
+              "type": "file",
+              "src": "/path/to/your/document.pdf",
+              "description": "Select a PDF file to upload"
+            },
+            {
+              "key": "metadata",
+              "value": "author=John Doe;category=Technical Documentation",
+              "type": "text",
+              "description": "Optional metadata in key=value format separated by semicolons"
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://localhost:7000/api/ingest",
+          "protocol": "https",
+          "host": ["localhost"],
+          "port": "7000",
+          "path": ["api", "ingest"]
+        },
+        "description": "Upload a PDF document for ingestion. The system will extract text, chunk it, generate embeddings, and index it in Azure Cognitive Search."
+      },
+      "response": []
+    },
+    {
+      "name": "Query Documents (First Question)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"question\": \"What are the main topics covered in the document?\",\n  \"topK\": 5\n}"
+        },
+        "url": {
+          "raw": "https://localhost:7000/api/query",
+          "protocol": "https",
+          "host": ["localhost"],
+          "port": "7000",
+          "path": ["api", "query"]
+        },
+        "description": "Ask a question about the ingested documents. This starts a new conversation."
+      },
+      "response": []
+    },
+    {
+      "name": "Query Documents (Follow-up Question)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"question\": \"Can you explain that in more detail?\",\n  \"conversationId\": \"YOUR_CONVERSATION_ID_FROM_PREVIOUS_RESPONSE\",\n  \"topK\": 5\n}"
+        },
+        "url": {
+          "raw": "https://localhost:7000/api/query",
+          "protocol": "https",
+          "host": ["localhost"],
+          "port": "7000",
+          "path": ["api", "query"]
+        },
+        "description": "Ask a follow-up question using the conversationId from the previous response to maintain context."
+      },
+      "response": []
+    },
+    {
+      "name": "Query Documents (Specific Topic)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"question\": \"What are the benefits of using Semantic Kernel for RAG patterns?\",\n  \"topK\": 3\n}"
+        },
+        "url": {
+          "raw": "https://localhost:7000/api/query",
+          "protocol": "https",
+          "host": ["localhost"],
+          "port": "7000",
+          "path": ["api", "query"]
+        },
+        "description": "Ask a specific question and retrieve only the top 3 most relevant chunks."
+      },
+      "response": []
+    }
+  ]
+}
