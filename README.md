@@ -8,7 +8,36 @@ A production-ready .NET 9 Web API that implements a Retrieval-Augmented Generati
 PDF Upload → Text Extraction → Chunking → Embedding → Azure Cognitive Search
                                                                ↓
 User Question → Embedding → Vector Search → Context Building → Azure OpenAI → Answer + Citations
+<img width="1308" height="624" alt="RAG_Snapshot_Sailee Mulik" src="https://github.com/user-attachments/assets/04b41c14-c090-4f93-8203-1516ed3f93a3" />
+
 ```
+## 🖥️ Screenshots
+
+### 🏠 RAG Frontend Home
+
+<img width="1920" height="1080" alt="RAG Frontend Home" src="https://github.com/user-attachments/assets/0acbdf7e-2e9b-47dc-bb17-cb1aa6892778" />
+
+### 📤 Document Upload
+
+<img width="1920" height="1080" alt="RAG Document Upload Feature" src="https://github.com/user-attachments/assets/640be1fe-34a4-404d-bc14-28ebe9eeaaf2" />
+
+### 📄 Document Upload – Processing
+
+<img width="1920" height="1080" alt="RAG Document Upload Feature 2" src="https://github.com/user-attachments/assets/2bdc35f0-aa5d-43fe-9422-24bd0429cb76" />
+
+### 📚 Document Management
+
+<img width="1920" height="1080" alt="RAG Document Management Feature" src="https://github.com/user-attachments/assets/ac181344-0d5d-41f4-832b-b4bbff0fa3a4" />
+
+### 🤖 RAG Chatbot
+
+<img width="1920" height="1080" alt="RAG Chatbot" src="https://github.com/user-attachments/assets/d744c70c-bbd0-4adc-b082-6775a58de652" />
+
+
+<img width="1920" height="1080" alt="RAG Chatbot 2" src="https://github.com/user-attachments/assets/0bcfc4bc-13db-4269-841e-61a9ee8b1e6b" />
+
+
+
 
 ## 🚀 Features
 
