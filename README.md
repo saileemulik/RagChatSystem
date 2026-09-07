@@ -8,7 +8,8 @@ A production-ready .NET 9 Web API that implements a Retrieval-Augmented Generati
 PDF Upload → Text Extraction → Chunking → Embedding → Azure Cognitive Search
                                                                ↓
 User Question → Embedding → Vector Search → Context Building → Azure OpenAI → Answer + Citations
-<img width="1308" height="624" alt="RAG_Snapshot_Sailee Mulik" src="https://github.com/user-attachments/assets/04b41c14-c090-4f93-8203-1516ed3f93a3" />
+
+<img width="1308" height="621" alt="image" src="https://github.com/user-attachments/assets/d3bc4205-e49f-45f5-ac16-bf01a4064606" />
 
 ```
 ## 🖥️ Screenshots
