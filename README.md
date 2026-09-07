@@ -1,6 +1,6 @@
 # RAG Chat System - AI-Powered PDF Q&A with Semantic Kernel
 
-A production-ready .NET 8 Web API that implements a Retrieval-Augmented Generation (RAG) pattern using Semantic Kernel, Azure OpenAI, and Azure Cognitive Search. Upload PDFs, chunk and embed their content, then ask questions to get AI-powered answers with citations.
+A production-ready .NET 9 Web API that implements a Retrieval-Augmented Generation (RAG) pattern using Semantic Kernel, Azure OpenAI, and Azure Cognitive Search. Upload PDFs, chunk and embed their content, then ask questions to get AI-powered answers with citations.
 
 ## 🏗️ Architecture
 
@@ -21,7 +21,7 @@ User Question → Embedding → Vector Search → Context Building → Azure Ope
 
 ## 📋 Prerequisites
 
-- .NET 8 SDK
+- .NET 9 SDK
 - Azure OpenAI account with:
   - GPT-4 (or GPT-3.5-turbo) deployment
   - text-embedding-ada-002 deployment
