@@ -9,7 +9,6 @@ PDF Upload → Text Extraction → Chunking → Embedding → Azure Cognitive Se
                                                                ↓
 User Question → Embedding → Vector Search → Context Building → Azure OpenAI → Answer + Citations
 
-<img width="1308" height="621" alt="image" src="https://github.com/user-attachments/assets/d3bc4205-e49f-45f5-ac16-bf01a4064606" />
 
 ```
 ## 🖥️ Screenshots
@@ -37,6 +36,7 @@ User Question → Embedding → Vector Search → Context Building → Azure Ope
 
 <img width="1920" height="1080" alt="RAG Chatbot 2" src="https://github.com/user-attachments/assets/0bcfc4bc-13db-4269-841e-61a9ee8b1e6b" />
 
+<img width="655" height="313" alt="image" src="https://github.com/user-attachments/assets/37cec24a-71c0-4d0d-839a-518a439f9f69" />
 
 
 
